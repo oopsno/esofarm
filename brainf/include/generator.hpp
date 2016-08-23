@@ -75,7 +75,16 @@ class LLVMGenerator: public CodeGenerator<llvm::Module*, llvm::Value *> {
   value_t on_loop(Loop *loop);
   code_t codegen(const std::vector<AST *> &asts);
   void collect(value_t value);
+  void setDebugFlag(bool debug);
  private:
+  llvm::Value *getPtr();
+  llvm::Value *getCurrentUnitPtr();
+  llvm::Value *getCurrentUnit();
+  void unitUpdated();
+  void pointerUpdated();
+  // Status
+  llvm::Value *pval_cache = nullptr, *uval_cache = nullptr, *unit_cache = nullptr;
+
   llvm::Function *read, *print, *memalloc, *memset;
   llvm::LLVMContext ctx;
   llvm::IRBuilder<> builder;
@@ -84,6 +93,7 @@ class LLVMGenerator: public CodeGenerator<llvm::Module*, llvm::Value *> {
   llvm::Value *ptr, *units;
   // DEBUG FUNCTIONS
   llvm::Function *dmsg, *dst;
+  bool debugMode = false;
 };
 
 }

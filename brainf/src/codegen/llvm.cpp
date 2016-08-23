@@ -249,5 +249,9 @@ llvm::Value *LLVMGenerator::getCurrentUnitPtr() {
   return unit_cache;
 }
 
+void LLVMGenerator::setDebugFlag(bool debug) {
+  debugMode = debug;
+}
+
 }
 }
