@@ -27,7 +27,6 @@ class Arithmetic: public AST {
   Arithmetic(const Operator &o);
   ASTType getType() const;
   std::string dump(size_t indent = 0) const;
- private:
   Operator opr;
 };
 
@@ -39,7 +38,6 @@ class Pointer: public AST {
   Pointer(const Operator &o);
   ASTType getType() const;
   std::string dump(size_t indent = 0) const;
- private:
   Operator opr;
 };
 
@@ -51,7 +49,6 @@ class Read: public AST {
   Read(const Operator &o);
   ASTType getType() const;
   std::string dump(size_t indent = 0) const;
- private:
   Operator opr;
 };
 
@@ -63,7 +60,6 @@ class Print: public AST {
   Print(const Operator &o);
   ASTType getType() const;
   std::string dump(size_t indent = 0) const;
- private:
   Operator opr;
 };
 
@@ -77,7 +73,6 @@ class Loop: public AST {
   void setLoopEnd(const Operator &o);
   std::vector<AST *> &getBlock();
   std::string dump(size_t indent = 0) const;
- private:
   std::vector<AST *> block;
   Operator opr, end;
 };
@@ -86,7 +81,7 @@ std::ostream &operator<<(std::ostream &os, AST *ast);
 std::ostream &operator<<(std::ostream &os, std::vector<AST *> &asts);
 
 template<typename T>
-bool isa(AST *ast) {
+bool isa(const AST *ast) {
   return typeid(*ast).hash_code() == typeid(T).hash_code();
 }
 
