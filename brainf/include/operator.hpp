@@ -1,7 +1,8 @@
 #pragma once
 
-#include <type_traits>
 #include <istream>
+#include <type_traits>
+#include <vector>
 
 namespace EsoFarm {
 namespace BrainF {
@@ -22,7 +23,7 @@ enum class OperandType {
 };
 
 struct Position {
-  size_t offset, line, column;
+  size_t line, column, offset;
 };
 
 struct Operand {
@@ -38,8 +39,9 @@ struct Operator {
 };
 
 std::ostream &operator<<(std::ostream &os, const Operand &o);
-std::ostream &operator<<(std::ostream &os, const Operator &o);
 std::ostream &operator<<(std::ostream &os, const Position &p);
+std::ostream &operator<<(std::ostream &os, const Operator &o);
+std::ostream &operator<<(std::ostream &os, const std::vector<Operator> &oprs);
 
 }
 }

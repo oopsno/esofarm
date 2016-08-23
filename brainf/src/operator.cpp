@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "operator.hpp"
 
 namespace EsoFarm {
@@ -23,6 +24,11 @@ std::ostream &operator<<(std::ostream &os, const Position &p) {
 
 std::ostream &operator<<(std::ostream &os, const Operator &o) {
   return os << o.repeat << " " << (char) (o.type) << " " << o.operand << " [From " << o.begin << " To " << o.end << "]";
+}
+
+std::ostream &operator<<(std::ostream &os, const std::vector<Operator> &oprs) {
+  std::copy(oprs.cbegin(), oprs.cend(), std::ostream_iterator<Operator>(os, "\n"));
+  return os;
 }
 
 }
